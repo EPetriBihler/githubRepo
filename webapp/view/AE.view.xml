@@ -1,0 +1,51 @@
+<mvc:View controllerName="sap.iot.ain.manageequipments.manageequipmentsDashboard.controller.AE" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:iot="sap.ui.iot.controls" xmlns:f="sap.ui.layout.form" displayBlock="true"
+	xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:iotele="sap.ui.iot.elements">
+	<uxap:ObjectPageSection showTitle="false">
+		<uxap:subSections>
+			<uxap:ObjectPageSubSection  mode="Expanded"> <!--title="Device Status"-->
+				<uxap:blocks>
+					<VBox width="100%">
+						<items>
+							<HBox>
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiLargeMarginBottom" header="Maschinenstatus">
+									<TileContent>
+										<NumericContent value="{parts : [{path : 'dashboardModel>/inProduction'}], formatter: '.formatter.statusText'}"
+											valueColor="{parts : [{path : 'dashboardModel>/inProduction'}], formatter: '.formatter.statusColor'}"/>
+									</TileContent>
+								</GenericTile>
+								<iot:IoTGauge xmlns:iot="sap.ui.iot.controls" id="statusGauge" value="{dashboardModel>/machinespeed}" upperError="null" lowerError="null"
+									maxValue="200" lowerWarning="null" upperWarning="null" showThresholdsLabels="false" width="350px" label="Drehzahl"/>
+							</HBox>
+							<iot:IoTChart id="tchart0" assetId="C9CDE8ED6A364689B8A52B58BD2F69ED" chartHeight="100%" noOfHours="1"> <!--assetId="4ECCB4F6EBBE450981BC9F026E566999" -->
+								<iot:propertySetTypes>
+									<iotele:IoTPropertySetTypeElement propertySetTypeName="BooleanValue">
+										<iotele:measures>
+											<iotele:IoTPropertyElement propertyName="BooleanValue"></iotele:IoTPropertyElement>
+										</iotele:measures>
+									</iotele:IoTPropertySetTypeElement>
+								</iot:propertySetTypes>
+							</iot:IoTChart>
+							<Table id="messageTable" items="{tableModel>/value}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiLargeMarginB">
+								<columns>
+									<Column><Text text="Zeitpunkt" id="time" /></Column>
+									<Column><Text text="Nachricht" id="message"/></Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation" press="itemSelected">
+										<cells>
+											<ObjectIdentifier  text="{ path: 'tableModel>_time',  type: 'sap.ui.model.type.DateTime', formatOptions :{
+											source: {pattern: 'YYYY-MM-ddTHH:mm:ss.SSSZ'}
+											}}" class="sapMTableContentMargin"/>
+											<Text text="{parts : [{path : 'tableModel>StringValue'}], formatter: '.formatter.bihlerText'}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</items>
+					</VBox>
+				</uxap:blocks>
+			</uxap:ObjectPageSubSection>
+		</uxap:subSections>
+	</uxap:ObjectPageSection>
+</mvc:View>

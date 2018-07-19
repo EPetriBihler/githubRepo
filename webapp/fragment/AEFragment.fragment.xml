@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:b="sap.iot.ain.lib.reusable.blocks"
+	xmlns:nb="sap.iot.ain.manageequipments.manageequipmentsDashboard.blocks">
+	<ObjectPageSection title="Dashboard">
+		<subSections>
+			<ObjectPageSubSection>
+				<blocks>
+					<nb:block></nb:block>
+				</blocks>
+			</ObjectPageSubSection>
+		</subSections>
+	</ObjectPageSection>
+</core:FragmentDefinition> 
